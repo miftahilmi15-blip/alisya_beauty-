@@ -1,85 +1,90 @@
-/* --- 1. RESET & FONT --- */
-* { margin: 0; padding: 0; box-sizing: border-box; }
+:root {
+    --gold: #c5a059;
+    --gold-light: #d4af37;
+    --gold-dark: #8b6b2d;
+    --bg-dark: #0a0a0a;
+    --bg-card: #151515;
+    --text-light: #e0e0e0;
+    --transition-speed: 0.4s;
+}
+
+/* --- 0. UTILITY & ANTI-HIGHLIGHT --- */
+.hidden { display: none !important; visibility: hidden !important; }
+
+* { margin: 0; padding: 0; box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
+
 body { 
     font-family: 'Inter', sans-serif; 
-    background-color: #0a0a0a; 
-    color: #e0e0e0; 
+    background-color: var(--bg-dark); 
+    color: var(--text-light); 
     line-height: 1.6;
-    padding-bottom: 80px; 
+    padding-bottom: 80px;
+    transition: background-color var(--transition-speed), color var(--transition-speed);
+    -webkit-user-select: none; user-select: none;
 }
 
-/* --- 2. LOGIN OVERLAY (Premium Look) --- */
-.overlay { 
-    position: fixed; top: 0; left: 0; width: 100%; height: 100%; 
-    background: radial-gradient(circle at 50% 50%, #1a1a1a 0%, #000 100%);
-    display: flex; align-items: center; justify-content: center; 
-    z-index: 9999; padding: 20px;
-}
-.login-card { 
-    text-align: center; width: 100%; max-width: 350px;
-    background: rgba(255, 255, 255, 0.02);
-    backdrop-filter: blur(25px);
-    /* Border dengan sedikit glow emas */
-    border: 1px solid rgba(197, 160, 89, 0.3);
-    border-radius: 35px; padding: 40px;
-    box-shadow: 0 20px 40px rgba(0,0,0,0.6), 0 0 20px rgba(197, 160, 89, 0.1);
-}
-.brand-logo { 
-    width: 110px; height: 110px; border-radius: 50%; 
-    border: 2px solid #c5a059; object-fit: cover; margin-bottom: 20px;
-    box-shadow: 0 0 15px rgba(197, 160, 89, 0.4);
-}
-.login-card h2 { color: #fff; font-size: 1.6rem; letter-spacing: 1px; margin-bottom: 10px; }
-.login-card p { color: #aaa; font-size: 0.85rem; margin-bottom: 30px; }
+/* Izinkan copy untuk info penting */
+.user-info, .promo-text, .address, .contact-info { -webkit-user-select: text; user-select: text; }
 
-/* --- TOMBOL GOOGLE GOLD GRADIENT --- */
-.btn-google { 
-    width: 100%; padding: 15px; border-radius: 15px; border: none; 
-    /* Gradient Emas */
-    background: linear-gradient(90deg, #c5a059 0%, #8b6b2d 100%); 
-    color: white; font-weight: 600; cursor: pointer;
-    transition: all 0.4s ease; display: flex; align-items: center; justify-content: center; gap: 12px;
-    text-transform: uppercase; font-size: 0.9rem; letter-spacing: 1px;
+/* --- LOADING SCREEN --- */
+.loading-overlay {
+    position: fixed; inset: 0; background: #0a0a0a;
+    display: flex; align-items: center; justify-content: center; z-index: 99999;
 }
-.btn-google:hover { 
-    background: linear-gradient(90deg, #d4af37 0%, #c5a059 100%);
-    box-shadow: 0 0 20px rgba(197, 160, 89, 0.5);
-    transform: translateY(-2px);
+.spinner {
+    width: 40px; height: 40px; border: 3px solid rgba(255,255,255,.1);
+    border-top-color: var(--gold); border-radius: 50%;
+    animation: spin .8s linear infinite;
 }
+@keyframes spin { to { transform: rotate(360deg); } }
 
-/* --- 3. NAVBAR & BRAND --- */
+/* --- LOGIN OVERLAY --- */
+.overlay {
+    position: fixed; inset: 0; background: rgba(0,0,0,0.95);
+    display: flex; align-items: center; justify-content: center; z-index: 9999;
+    padding: 20px;
+}
+.login-card {
+    background: var(--bg-card); padding: 40px; border-radius: 20px;
+    text-align: center; width: 100%; max-width: 350px; border: 1px solid #333;
+}
+.brand-logo { width: 100px; margin-bottom: 20px; }
+.btn-google {
+    width: 100%; background: #fff; color: #333; border: none;
+    padding: 12px; border-radius: 10px; font-weight: 600; cursor: pointer;
+    margin-top: 20px; transition: 0.3s;
+}
+.btn-google:active { transform: scale(0.98); }
+
+/* --- NAVBAR STICKY --- */
 .navbar { 
     padding: 20px; display: flex; justify-content: space-between; 
     align-items: center; background: rgba(0,0,0,0.3);
     border-bottom: 1px solid #222;
+    position: sticky; top: 0; z-index: 100;
 }
-.nav-brand { font-weight: 800; color: #c5a059; letter-spacing: 4px; font-size: 1.4rem; }
+.nav-brand { font-weight: 800; color: var(--gold); letter-spacing: 4px; font-size: 1.4rem; }
+.btn-menu { background: none; border: none; color: var(--gold); font-size: 1.5rem; cursor: pointer; }
 
-/* --- 4. BANNER PROMO --- */
-.banner-promo { 
-    margin: 20px; padding: 30px; 
-    background: linear-gradient(135deg, #1f1f1f 0%, #0f0f0f 100%); 
-    border: 1px solid #333; border-radius: 20px; text-align: center;
+/* --- SIDEBAR --- */
+.sidebar { 
+    position: fixed; top: 0; left: -100%; width: 280px; height: 100%; 
+    background: #0a0a0a; z-index: 2000; transition: 0.4s cubic-bezier(0.4, 0, 0.2, 1); 
+    padding: 30px; border-right: 1px solid var(--gold);
 }
+.sidebar.active { left: 0; }
+.btn-close { background: none; border: none; color: #fff; font-size: 1.5rem; cursor: pointer; }
 
-/* --- 5. CATEGORY GRID --- */
-.category-section { padding: 0 20px; margin-top: 20px; }
-.category-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; }
-.cat-item { 
-    background: #151515; padding: 15px 5px; border-radius: 15px; 
-    text-align: center; border: 1px solid #333; transition: 0.3s;
-}
-.cat-item:hover { border-color: #c5a059; }
-.cat-item i { color: #c5a059; margin-bottom: 8px; display: block; font-size: 1.4rem; }
-
-/* --- 6. BOTTOM NAV --- */
+/* --- BOTTOM NAV --- */
 .bottom-nav { 
-    position: fixed; bottom: 0; width: 100%; background: rgba(10,10,10,0.95);
-    backdrop-filter: blur(10px); display: flex; justify-content: space-around; 
-    padding: 15px; border-top: 1px solid #333;
+    position: fixed; bottom: 0; width: 100%; max-width: 500px;
+    left: 50%; transform: translateX(-50%); height: 70px;
+    background: rgba(10,10,10,0.95); backdrop-filter: blur(10px); 
+    display: flex; justify-content: space-around; 
+    align-items: center; border-top: 1px solid #333; z-index: 1000;
 }
-.nav-link { color: #666; font-size: 1.4rem; transition: 0.3s; }
-.nav-link.active { color: #c5a059; transform: translateY(-5px); }
 
+/* --- SPA ANIMATION --- */
 .spa-page { display: none; }
-.spa-page.active { display: block; }
+.spa-page.active { display: block; animation: fadeIn 0.3s ease; }
+@keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
