@@ -88,37 +88,34 @@
         import { initSidebarLinks } from "./src/components/sidebar.js";
         
         document.addEventListener("DOMContentLoaded", () => {
-            // 1. Inisialisasi Logic
             initializeAuth();
             initLogin();
             initSidebarLinks();
 
-            // 2. Kontrol Loading & Auth State
             onAuthStateChanged(auth, (user) => {
-                const loadingScreen = document.getElementById('loading-screen');
+                // Paksa hilangkan loading screen
+                const loading = document.getElementById('loading-screen');
+                if(loading) loading.style.display = 'none';
+
                 const loginOverlay = document.getElementById('login-overlay');
                 const navbar = document.querySelector('.navbar');
                 const bottomNav = document.getElementById('bottom-nav');
                 const appContainer = document.getElementById('app-container');
 
-                // Hilangkan loading apapun statusnya
-                loadingScreen.classList.add('hidden'); 
-                // Catatan: Jika spinner masih muncul, ganti ke: loadingScreen.style.display = 'none';
-
                 if (user) {
-                    loginOverlay.classList.add('hidden');
-                    navbar.classList.remove('hidden');
-                    bottomNav.classList.remove('hidden');
-                    appContainer.classList.remove('hidden');
+                    loginOverlay?.classList.add('hidden');
+                    navbar?.classList.remove('hidden');
+                    bottomNav?.classList.remove('hidden');
+                    appContainer?.classList.remove('hidden');
                 } else {
-                    loginOverlay.classList.remove('hidden');
-                    navbar.classList.add('hidden');
-                    bottomNav.classList.add('hidden');
-                    appContainer.classList.add('hidden');
+                    loginOverlay?.classList.remove('hidden');
+                    navbar?.classList.add('hidden');
+                    bottomNav?.classList.add('hidden');
+                    appContainer?.classList.add('hidden');
                 }
             });
 
-            // 3. Sidebar & Backdrop Control
+            // Sidebar Control
             const sidebar = document.getElementById('sidebar');
             const backdrop = document.getElementById('sidebar-backdrop');
             const trigger = document.getElementById('sidebar-trigger');
