@@ -3,18 +3,26 @@ import { initRouter, navigateTo } from "../router/router.js";
 const initApp = () => {
     console.log("Aplikasi sedang dimuat...");
 
-    // JARING PENGAMAN: Apapun yang terjadi pada router, 
-    // kita tetap tampilkan body setelah 500ms agar user tidak melihat layar hitam selamanya.
-    setTimeout(() => {
-        document.body.style.visibility = 'visible';
+    // 1. Jaring Pengaman Utama
+    const safetyNet = setTimeout(() => {
+        document.body.style.setProperty('visibility', 'visible', 'important');
         document.body.style.opacity = '1';
-    }, 500);
+    }, 1000);
 
     try {
+        // 2. Inisialisasi
         initRouter();
         navigateTo('home-page');
+        
+        // Bersihkan timeout jika berhasil
+        clearTimeout(safetyNet);
+        document.body.style.visibility = 'visible';
+        document.body.style.opacity = '1';
+        
     } catch (error) {
         console.error("Router error:", error);
+        // Tetap tampilkan meski error
+        document.body.style.visibility = 'visible';
     }
 };
 
