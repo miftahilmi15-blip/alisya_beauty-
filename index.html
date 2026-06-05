@@ -5,16 +5,15 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <title>Alisya Beauty | Premium Muslimah Salon</title>
     
-    <meta name="apple-mobile-web-app-capable" content="yes">
-    <meta name="apple-mobile-web-app-status-bar-style" content="black">
-    
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
     <link rel="stylesheet" href="assets/css/style.css">
 </head>
-<body style="visibility: hidden;"> <div id="login-overlay" class="overlay">
+<body style="opacity: 0; transition: opacity 0.5s;"> 
+
+    <div id="login-overlay" class="overlay">
         <div class="login-card">
-            <img src="assets/logo/logo.png" alt="Logo">
+            <img src="assets/logo/logo.png" alt="Logo" onerror="this.style.display='none'">
             <h2>Selamat Datang</h2>
             <p>Alisya Beauty Premium Salon</p>
             <button id="btnLogin" class="btn-google">
@@ -31,26 +30,24 @@
     <main id="app-container">
         <div id="home-page" class="spa-page active">
             <section class="banner-promo">
-                <div class="banner-content">
-                    <h1>Promo Spesial</h1>
-                    <p>Dapatkan diskon 20% untuk perawatan pertama Anda</p>
-                    <button class="btn-main" data-target="booking-page">Booking Sekarang</button>
-                </div>
+                <h1>Promo Spesial</h1>
+                <p>Dapatkan diskon 20% untuk perawatan pertama Anda</p>
+                <button class="btn-main" data-target="booking-page">Booking Sekarang</button>
             </section>
 
             <section class="category-section">
                 <h3>Kategori Perawatan</h3>
                 <div class="category-grid">
-                    <div class="cat-item"><span><i class="fa-solid fa-scissors"></i></span>Hair</div>
-                    <div class="cat-item"><span><i class="fa-solid fa-face-smile"></i></span>Face</div>
-                    <div class="cat-item"><span><i class="fa-solid fa-spa"></i></span>Body</div>
+                    <div class="cat-item"><i class="fa-solid fa-scissors"></i><span>Hair</span></div>
+                    <div class="cat-item"><i class="fa-solid fa-face-smile"></i><span>Face</span></div>
+                    <div class="cat-item"><i class="fa-solid fa-spa"></i><span>Body</span></div>
                 </div>
             </section>
         </div>
 
-        <div id="booking-page" class="spa-page"></div>
-        <div id="services-page" class="spa-page"></div>
-        <div id="shop-page" class="spa-page"></div>
+        <div id="booking-page" class="spa-page"><h2>Booking</h2></div>
+        <div id="services-page" class="spa-page"><h2>Services</h2></div>
+        <div id="shop-page" class="spa-page"><h2>Shop</h2></div>
     </main>
 
     <nav class="bottom-nav">
