@@ -1,24 +1,79 @@
 /* --- 1. RESET & FONT --- */
 * { margin: 0; padding: 0; box-sizing: border-box; }
-body { font-family: 'Inter', sans-serif; background: #f8f9fa; color: #333; }
+body { 
+    font-family: 'Inter', sans-serif; 
+    background-color: #0a0a0a; /* Background gelap agar kesan premium */
+    color: #f4f4f4; 
+    line-height: 1.6;
+}
 
-/* --- 2. LOGIN OVERLAY (Premium Look) --- */
+/* --- 2. LOGIN OVERLAY (Glassmorphism) --- */
 .overlay { 
     position: fixed; top: 0; left: 0; width: 100%; height: 100%; 
-    background: #000; display: flex; align-items: center; justify-content: center; z-index: 9999; 
-    padding: 20px;
+    background: radial-gradient(circle at center, #1a1a1a 0%, #000 100%);
+    display: flex; align-items: center; justify-content: center; 
+    z-index: 9999; padding: 20px;
 }
-.login-card { text-align: center; color: white; display: flex; flex-direction: column; align-items: center; gap: 10px; }
+.login-card { 
+    text-align: center; width: 90%; max-width: 360px;
+    background: rgba(255, 255, 255, 0.05);
+    backdrop-filter: blur(15px);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 30px; padding: 40px;
+}
+.login-card img { 
+    width: 120px; height: 120px; border-radius: 50%; 
+    border: 4px solid #c5a059; box-shadow: 0 0 20px rgba(197, 160, 89, 0.3);
+    margin-bottom: 20px; object-fit: cover;
+}
+.login-card h2 { font-size: 1.6rem; font-weight: 300; letter-spacing: 2px; text-transform: uppercase; }
+.login-card p { font-size: 0.9rem; color: #888; margin-bottom: 30px; }
 
-/* Logo & Judul */
-.login-card img { width: 120px; height: 120px; border-radius: 50%; border: 3px solid #d4a373; margin-bottom: 15px; }
-.login-card h2 { font-size: 1.8rem; font-weight: 600; color: #fff; }
-.login-card p { font-size: 1rem; color: #aaa; margin-bottom: 25px; font-weight: 300; }
-
-/* Tombol Google (Standar Profesional) */
 .btn-google { 
-    padding: 12px 30px; border-radius: 25px; border: none; cursor: pointer; 
-    background: #fff; color: #333; font-weight: 600; 
-    display: flex; align-items: center; gap: 10px; box-shadow: 0 4px 6px rgba(0,0,0,0.2);
+    width: 100%; padding: 15px; border-radius: 50px; border: none; 
+    background: #fff; color: #333; font-weight: 600; cursor: pointer;
+    display: flex; justify-content: center; align-items: center; gap: 10px;
+    transition: transform 0.3s ease;
 }
-.btn-google i { font-size: 1.2rem; }
+.btn-google:hover { transform: scale(1.02); }
+
+/* --- 3. NAVBAR MODERN --- */
+.navbar { 
+    padding: 20px; display: flex; justify-content: space-between; 
+    align-items: center; background: rgba(255, 255, 255, 0.02);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+.nav-brand { font-weight: 800; letter-spacing: 2px; font-size: 1.2rem; }
+
+/* --- 4. BANNER PROMO (Gradient Gold) --- */
+.banner-promo { 
+    margin: 20px; padding: 30px; 
+    background: linear-gradient(135deg, #c5a059, #8b6b2d); 
+    border-radius: 25px; color: white; text-align: center;
+}
+.btn-main { 
+    margin-top: 15px; background: white; color: #c5a059; border: none; 
+    padding: 10px 25px; border-radius: 50px; font-weight: bold; cursor: pointer;
+}
+
+/* --- 5. GRID KATEGORI --- */
+.category-section { padding: 0 20px; margin-top: 20px; }
+.category-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 15px; }
+.cat-item { 
+    background: rgba(255, 255, 255, 0.05); padding: 20px 10px; 
+    border-radius: 20px; text-align: center;
+}
+.cat-item i { font-size: 1.5rem; color: #c5a059; margin-bottom: 8px; display: block; }
+
+/* --- 6. BOTTOM NAVIGATION --- */
+.bottom-nav { 
+    position: fixed; bottom: 0; width: 100%; display: flex; 
+    justify-content: space-around; background: rgba(0, 0, 0, 0.8);
+    backdrop-filter: blur(20px); padding: 20px;
+}
+.nav-link { color: #888; font-size: 1.3rem; }
+.nav-link.active { color: #c5a059; }
+
+/* --- 7. SPA CONTROL --- */
+.spa-page { display: none; }
+.spa-page.active { display: block; }
