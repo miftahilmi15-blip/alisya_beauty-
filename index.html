@@ -81,17 +81,44 @@
     </nav>
 
     <script type="module">
+        import { auth } from "./src/config/firebase.js";
+        import { onAuthStateChanged } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-auth.js";
         import { initializeAuth } from "./src/features/auth/authService.js";
         import { initLogin } from "./src/features/auth/login.js";
         import { initSidebarLinks } from "./src/components/sidebar.js";
         
         document.addEventListener("DOMContentLoaded", () => {
-            // Jalankan tanpa await untuk memastikan script tidak berhenti jika ada error ringan
+            // 1. Inisialisasi Logic
             initializeAuth();
             initLogin();
             initSidebarLinks();
 
-            // Sidebar & Backdrop Control
+            // 2. Kontrol Loading & Auth State
+            onAuthStateChanged(auth, (user) => {
+                const loadingScreen = document.getElementById('loading-screen');
+                const loginOverlay = document.getElementById('login-overlay');
+                const navbar = document.querySelector('.navbar');
+                const bottomNav = document.getElementById('bottom-nav');
+                const appContainer = document.getElementById('app-container');
+
+                // Hilangkan loading apapun statusnya
+                loadingScreen.classList.add('hidden'); 
+                // Catatan: Jika spinner masih muncul, ganti ke: loadingScreen.style.display = 'none';
+
+                if (user) {
+                    loginOverlay.classList.add('hidden');
+                    navbar.classList.remove('hidden');
+                    bottomNav.classList.remove('hidden');
+                    appContainer.classList.remove('hidden');
+                } else {
+                    loginOverlay.classList.remove('hidden');
+                    navbar.classList.add('hidden');
+                    bottomNav.classList.add('hidden');
+                    appContainer.classList.add('hidden');
+                }
+            });
+
+            // 3. Sidebar & Backdrop Control
             const sidebar = document.getElementById('sidebar');
             const backdrop = document.getElementById('sidebar-backdrop');
             const trigger = document.getElementById('sidebar-trigger');
