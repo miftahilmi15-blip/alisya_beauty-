@@ -1,18 +1,27 @@
-import { initializeApp } from "firebase/app";
-import { getAuth } from "firebase/auth"; // <--- TAMBAHKAN INI
-import { getAnalytics } from "firebase/analytics";
+import { initRouter, navigateTo } from "../router/router.js";
+import { initializeAuth } from "../features/auth/authService.js";
 
-const firebaseConfig = {
-  apiKey: "AIzaSyB_YeVJv-1a7ij3XWdhxA8g07ip1xaqISY",
-  authDomain: "salon-12993.firebaseapp.com",
-  databaseURL: "https://salon-12993-default-rtdb.asia-southeast1.firebasedatabase.app",
-  projectId: "salon-12993",
-  storageBucket: "salon-12993.firebasestorage.app",
-  messagingSenderId: "382651324725",
-  appId: "1:382651324725:web:9be2540b08a2f82360d47c",
-  measurementId: "G-9WKWTR9QZ6"
+const initApp = () => {
+console.log("Aplikasi sedang dimuat...");
+
+const safetyNet = setTimeout(() => {
+    document.body.style.visibility = "visible";
+    document.body.style.opacity = "1";
+}, 1000);
+
+try {
+    initializeAuth();
+    initRouter();
+    navigateTo("home-page");
+
+    clearTimeout(safetyNet);
+    document.body.style.visibility = "visible";
+    document.body.style.opacity = "1";
+} catch (error) {
+    console.error("Initialization error:", error);
+    document.body.style.visibility = "visible";
+}
+
 };
 
-const app = initializeApp(firebaseConfig);
-export const auth = getAuth(app); // <--- EXPORT AUTH AGAR BISA DIPAKAI DI MAIN.JS
-export const analytics = getAnalytics(app);
+document.addEventListener("DOMContentLoaded", initApp);
