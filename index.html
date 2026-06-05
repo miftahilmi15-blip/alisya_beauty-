@@ -58,5 +58,10 @@
     </nav>
 
     <script type="module" src="src/app/main.js"></script>
+    <script>
+    window.onerror = function(message, source, lineno, colno, error) {
+        alert("Error: " + message + " di " + source + ":" + lineno);
+    };
+</script>
 </body>
 </html>
