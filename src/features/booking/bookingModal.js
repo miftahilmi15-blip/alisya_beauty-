@@ -1,14 +1,14 @@
 // src/features/booking/bookingModal.js
 
 export const openBookingModal = (bookingId) => {
-    const modal = document.getElementById('booking-modal'); // Asumsi ada elemen modal di index.html
+    const modal = document.getElementById('booking-modal');
+    if (!modal) return; // Proteksi agar tidak error kalau modal belum di-render
+    
     const modalBody = modal.querySelector('.modal-body');
     
-    // Logika untuk mengisi data ke dalam modal
     modalBody.innerHTML = `
         <h3>Detail Booking</h3>
         <p>ID: ${bookingId}</p>
-        <!-- Data lain bisa ditambah di sini -->
     `;
     
     modal.style.display = 'block';
@@ -16,5 +16,10 @@ export const openBookingModal = (bookingId) => {
 
 export const closeBookingModal = () => {
     const modal = document.getElementById('booking-modal');
-    modal.style.display = 'none';
+    if (modal) modal.style.display = 'none';
 };
+
+// --- TAMBAHAN PENTING ---
+// Daftarkan ke window agar bisa dipanggil dari atribut onclick di HTML
+window.openBookingModal = openBookingModal;
+window.closeBookingModal = closeBookingModal;
