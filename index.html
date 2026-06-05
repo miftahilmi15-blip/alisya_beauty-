@@ -2,20 +2,26 @@
 <html lang="id">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <title>Alisya Beauty | Premium Muslimah Salon</title>
     
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    
     <link rel="stylesheet" href="assets/css/style.css">
 </head>
-<body style="background-color: #0a0a0a; color: white;"> 
+<body> 
 
     <div id="login-overlay" class="overlay">
         <div class="login-card">
+            <img src="assets/logo/logo.png" alt="Alisya Beauty" class="brand-logo" onerror="this.style.display='none'">
+            
             <h2>Selamat Datang</h2>
             <p>Alisya Beauty Premium Salon</p>
-            <button id="btnLogin" class="btn-google">Login dengan Google</button>
+            
+            <button id="btnLogin" class="btn-google">
+                <i class="fa-brands fa-google"></i> Login dengan Google
+            </button>
         </div>
     </div>
 
@@ -29,13 +35,6 @@
         </div>
     </main>
 
-    <script>
-        // Paksa tampilan muncul setelah 1 detik, meski JS lain error
-        window.addEventListener('load', () => {
-            console.log("Halaman dimuat...");
-        });
-    </script>
-    
     <script type="module" src="./src/app/main.js"></script>
 </body>
 </html>
