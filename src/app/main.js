@@ -1,11 +1,10 @@
 // src/app/main.js
-import { renderBookingList } from "../features/booking/bookingList.js";
-import { setupBookingForm } from "../features/booking/bookingForm.js";
+import { initRouter, navigateTo } from "../router/router.js";
 
 document.addEventListener('DOMContentLoaded', () => {
-    // 1. Inisialisasi daftar booking
-    renderBookingList('booking-container-id'); 
+    // Inisialisasi event klik nav
+    initRouter();
     
-    // 2. Inisialisasi form booking
-    setupBookingForm();
+    // Default halaman saat pertama kali buka
+    navigateTo('home-page');
 });
