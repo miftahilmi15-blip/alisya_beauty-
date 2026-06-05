@@ -81,22 +81,26 @@
     </nav>
 
     <script type="module">
-        import { auth } from "./src/config/firebase.js";
-        import { onAuthStateChanged } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-auth.js";
-        import { initializeAuth } from "./src/features/auth/authService.js";
-        import { initLogin } from "./src/features/auth/login.js";
-        import { initSidebarLinks } from "./src/components/sidebar.js";
-        
-        document.addEventListener("DOMContentLoaded", () => {
+    import { auth } from "./src/config/firebase.js";
+    import { onAuthStateChanged } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-auth.js";
+    import { initializeAuth } from "./src/features/auth/authService.js";
+    import { initLogin } from "./src/features/auth/login.js";
+    import { initSidebarLinks } from "./src/components/sidebar.js";
+    
+    // Fungsi untuk menghilangkan loading apapun kondisinya
+    const stopLoading = () => {
+        const loading = document.getElementById('loading-screen');
+        if(loading) loading.style.display = 'none';
+    };
+
+    document.addEventListener("DOMContentLoaded", () => {
+        try {
             initializeAuth();
             initLogin();
             initSidebarLinks();
 
             onAuthStateChanged(auth, (user) => {
-                // Paksa hilangkan loading screen
-                const loading = document.getElementById('loading-screen');
-                if(loading) loading.style.display = 'none';
-
+                stopLoading();
                 const loginOverlay = document.getElementById('login-overlay');
                 const navbar = document.querySelector('.navbar');
                 const bottomNav = document.getElementById('bottom-nav');
@@ -114,22 +118,20 @@
                     appContainer?.classList.add('hidden');
                 }
             });
+        } catch (err) {
+            console.error("Gagal inisialisasi:", err);
+            // Tetap buka aplikasi meski error agar tidak stuck di layar hitam
+            stopLoading();
+            document.getElementById('app-container')?.classList.remove('hidden');
+        }
 
-            // Sidebar Control
-            const sidebar = document.getElementById('sidebar');
-            const backdrop = document.getElementById('sidebar-backdrop');
-            const trigger = document.getElementById('sidebar-trigger');
-            const closeBtn = document.getElementById('close-sidebar');
-
-            const toggleSidebar = (show) => {
-                sidebar?.classList.toggle('active', show);
-                backdrop?.classList.toggle('active', show);
-            };
-
-            trigger?.addEventListener('click', () => toggleSidebar(true));
-            closeBtn?.addEventListener('click', () => toggleSidebar(false));
-            backdrop?.addEventListener('click', () => toggleSidebar(false));
-        });
-    </script>
+        // Sidebar Control tetap sama
+        const sidebar = document.getElementById('sidebar');
+        const trigger = document.getElementById('sidebar-trigger');
+        const closeBtn = document.getElementById('close-sidebar');
+        trigger?.addEventListener('click', () => sidebar?.classList.add('active'));
+        closeBtn?.addEventListener('click', () => sidebar?.classList.remove('active'));
+    });
+</script>
 </body>
 </html>
