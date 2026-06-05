@@ -1,37 +1,24 @@
-/* 1. RESET DASAR */
+/* --- 1. RESET & FONT --- */
 * { margin: 0; padding: 0; box-sizing: border-box; }
-body { font-family: 'Inter', sans-serif; background: #f4f4f4; padding-bottom: 80px; }
+body { font-family: 'Inter', sans-serif; background: #f8f9fa; color: #333; }
 
-/* 2. OVERLAY LOGIN */
+/* --- 2. LOGIN OVERLAY (Premium Look) --- */
 .overlay { 
     position: fixed; top: 0; left: 0; width: 100%; height: 100%; 
-    background: #000; color: white;
-    display: flex; flex-direction: column; align-items: center; justify-content: center;
-    z-index: 9999;
+    background: #000; display: flex; align-items: center; justify-content: center; z-index: 9999; 
+    padding: 20px;
 }
-.login-card { text-align: center; padding: 20px; }
-.login-card img { width: 100px; height: 100px; border-radius: 50%; margin-bottom: 15px; border: 2px solid #d4a373; }
-.btn-google { margin-top: 20px; padding: 10px 20px; background: #d4a373; border: none; border-radius: 20px; font-weight: bold; cursor: pointer; }
+.login-card { text-align: center; color: white; display: flex; flex-direction: column; align-items: center; gap: 10px; }
 
-/* 3. NAVBAR */
-.navbar { 
-    background: white; padding: 15px; display: flex; 
-    justify-content: space-between; align-items: center; border-bottom: 1px solid #ddd;
+/* Logo & Judul */
+.login-card img { width: 120px; height: 120px; border-radius: 50%; border: 3px solid #d4a373; margin-bottom: 15px; }
+.login-card h2 { font-size: 1.8rem; font-weight: 600; color: #fff; }
+.login-card p { font-size: 1rem; color: #aaa; margin-bottom: 25px; font-weight: 300; }
+
+/* Tombol Google (Standar Profesional) */
+.btn-google { 
+    padding: 12px 30px; border-radius: 25px; border: none; cursor: pointer; 
+    background: #fff; color: #333; font-weight: 600; 
+    display: flex; align-items: center; gap: 10px; box-shadow: 0 4px 6px rgba(0,0,0,0.2);
 }
-
-/* 4. CONTENT */
-.spa-page { display: none; padding: 20px; }
-.spa-page.active { display: block; }
-
-/* 5. BANNER & GRID (Tampilan Sederhana) */
-.banner-promo { background: #d4a373; color: white; padding: 20px; border-radius: 10px; text-align: center; }
-.category-grid { display: flex; gap: 10px; margin-top: 15px; justify-content: space-between; }
-.cat-item { background: white; padding: 15px; width: 30%; text-align: center; border-radius: 8px; box-shadow: 0 2px 4px rgba(0,0,0,0.1); }
-
-/* 6. BOTTOM NAV */
-.bottom-nav { 
-    position: fixed; bottom: 0; width: 100%; background: white; 
-    display: flex; justify-content: space-around; padding: 15px; 
-    border-top: 1px solid #ddd;
-}
-.nav-link { color: #555; font-size: 20px; text-decoration: none; }
+.btn-google i { font-size: 1.2rem; }
