@@ -1,37 +1,37 @@
-/* RESET */
+/* 1. RESET DASAR */
 * { margin: 0; padding: 0; box-sizing: border-box; }
-body { font-family: sans-serif; background-color: #f4f4f4; color: #333; }
+body { font-family: 'Inter', sans-serif; background: #f4f4f4; padding-bottom: 80px; }
 
-/* LAYOUT DASAR */
-.spa-page { display: none; }
-.spa-page.active { display: block; }
-#app-container { padding-bottom: 80px; }
+/* 2. OVERLAY LOGIN */
+.overlay { 
+    position: fixed; top: 0; left: 0; width: 100%; height: 100%; 
+    background: #000; color: white;
+    display: flex; flex-direction: column; align-items: center; justify-content: center;
+    z-index: 9999;
+}
+.login-card { text-align: center; padding: 20px; }
+.login-card img { width: 100px; height: 100px; border-radius: 50%; margin-bottom: 15px; border: 2px solid #d4a373; }
+.btn-google { margin-top: 20px; padding: 10px 20px; background: #d4a373; border: none; border-radius: 20px; font-weight: bold; cursor: pointer; }
 
-/* NAVBAR */
+/* 3. NAVBAR */
 .navbar { 
-    background: white; padding: 15px 20px; 
-    display: flex; justify-content: space-between; align-items: center; 
-    border-bottom: 1px solid #ddd;
+    background: white; padding: 15px; display: flex; 
+    justify-content: space-between; align-items: center; border-bottom: 1px solid #ddd;
 }
 
-/* BANNER */
-.banner-promo { 
-    background: #d4a373; color: white; margin: 20px; 
-    padding: 30px; border-radius: 15px; text-align: center;
-}
+/* 4. CONTENT */
+.spa-page { display: none; padding: 20px; }
+.spa-page.active { display: block; }
 
-/* KATEGORI GRID */
-.category-grid { 
-    display: flex; justify-content: space-around; padding: 20px; 
-}
-.cat-item { 
-    background: white; padding: 15px; border-radius: 10px; 
-    width: 30%; text-align: center;
-}
+/* 5. BANNER & GRID (Tampilan Sederhana) */
+.banner-promo { background: #d4a373; color: white; padding: 20px; border-radius: 10px; text-align: center; }
+.category-grid { display: flex; gap: 10px; margin-top: 15px; justify-content: space-between; }
+.cat-item { background: white; padding: 15px; width: 30%; text-align: center; border-radius: 8px; box-shadow: 0 2px 4px rgba(0,0,0,0.1); }
 
-/* BOTTOM NAV */
+/* 6. BOTTOM NAV */
 .bottom-nav { 
-    position: fixed; bottom: 0; width: 100%; 
-    background: white; display: flex; justify-content: space-around; 
-    padding: 15px; border-top: 1px solid #ddd;
+    position: fixed; bottom: 0; width: 100%; background: white; 
+    display: flex; justify-content: space-around; padding: 15px; 
+    border-top: 1px solid #ddd;
 }
+.nav-link { color: #555; font-size: 20px; text-decoration: none; }
