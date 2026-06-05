@@ -1,19 +1,18 @@
-import { initializeApp } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-app.js";
-import { getAuth, GoogleAuthProvider } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-auth.js";
-import { getDatabase } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-database.js";
+import { initializeApp } from "firebase/app";
+import { getAuth } from "firebase/auth"; // <--- TAMBAHKAN INI
+import { getAnalytics } from "firebase/analytics";
 
 const firebaseConfig = {
-    apiKey: "AIzaSyB_YeVJv-1a7ij3XWdhxA8g07ip1xaqISY",
-    authDomain: "salon-12993.firebaseapp.com",
-    databaseURL: "https://salon-12993-default-rtdb.asia-southeast1.firebasedatabase.app",
-    projectId: "salon-12993",
-    storageBucket: "salon-12993.firebasestorage.app",
-    messagingSenderId: "382651324725",
-    appId: "1:382651324725:web:9be2540b08a2f82360d47c"
+  apiKey: "AIzaSyB_YeVJv-1a7ij3XWdhxA8g07ip1xaqISY",
+  authDomain: "salon-12993.firebaseapp.com",
+  databaseURL: "https://salon-12993-default-rtdb.asia-southeast1.firebasedatabase.app",
+  projectId: "salon-12993",
+  storageBucket: "salon-12993.firebasestorage.app",
+  messagingSenderId: "382651324725",
+  appId: "1:382651324725:web:9be2540b08a2f82360d47c",
+  measurementId: "G-9WKWTR9QZ6"
 };
 
 const app = initializeApp(firebaseConfig);
-
-export const auth = getAuth(app);
-export const provider = new GoogleAuthProvider();
-export const db = getDatabase(app);
+export const auth = getAuth(app); // <--- EXPORT AUTH AGAR BISA DIPAKAI DI MAIN.JS
+export const analytics = getAnalytics(app);
