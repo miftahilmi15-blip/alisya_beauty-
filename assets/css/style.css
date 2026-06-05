@@ -1,46 +1,59 @@
-/* --- RESET & FONT --- */
+/* --- 1. RESET & FONT --- */
 * { margin: 0; padding: 0; box-sizing: border-box; }
 body { 
     font-family: 'Inter', sans-serif; 
     background-color: #0a0a0a; 
-    color: #f4f4f4; 
+    color: #e0e0e0; 
     line-height: 1.6;
-    opacity: 1; /* Pastikan selalu muncul */
 }
 
-/* --- LOGIN OVERLAY --- */
+/* --- 2. LOGIN OVERLAY (Premium Look) --- */
 .overlay { 
     position: fixed; top: 0; left: 0; width: 100%; height: 100%; 
-    background: radial-gradient(circle at center, #1a1a1a 0%, #000 100%);
+    /* Background dengan efek gradient halus */
+    background: radial-gradient(circle at 50% 50%, #1a1a1a 0%, #050505 100%);
     display: flex; align-items: center; justify-content: center; 
     z-index: 9999; padding: 20px;
 }
 .login-card { 
-    text-align: center; width: 90%; max-width: 360px;
-    background: rgba(255, 255, 255, 0.05);
-    backdrop-filter: blur(15px);
+    text-align: center; width: 100%; max-width: 350px;
+    background: rgba(255, 255, 255, 0.03);
+    backdrop-filter: blur(20px);
     border: 1px solid rgba(255, 255, 255, 0.1);
     border-radius: 30px; padding: 40px;
+    box-shadow: 0 15px 35px rgba(0,0,0,0.5);
 }
-.login-card img { 
-    width: 120px; height: 120px; border-radius: 50%; 
-    border: 4px solid #c5a059; box-shadow: 0 0 20px rgba(197, 160, 89, 0.3);
-    margin-bottom: 20px; object-fit: cover;
+.login-card h2 { 
+    font-size: 1.8rem; font-weight: 300; 
+    color: #c5a059; /* Warna Gold */
+    margin-bottom: 10px; letter-spacing: 2px; 
 }
-.login-card h2 { font-size: 1.6rem; font-weight: 300; letter-spacing: 2px; text-transform: uppercase; }
 .login-card p { font-size: 0.9rem; color: #888; margin-bottom: 30px; }
 
 .btn-google { 
-    width: 100%; padding: 15px; border-radius: 50px; border: none; 
+    width: 100%; padding: 14px; border-radius: 12px; border: none; 
     background: #fff; color: #333; font-weight: 600; cursor: pointer;
-    display: flex; justify-content: center; align-items: center; gap: 10px;
-    transition: transform 0.3s ease;
+    transition: all 0.3s ease; display: flex; align-items: center; justify-content: center; gap: 10px;
 }
-.btn-google:hover { transform: scale(1.02); }
+.btn-google:hover { background: #f0f0f0; transform: translateY(-2px); }
 
-/* --- NAVBAR & UI --- */
-.navbar { padding: 20px; display: flex; justify-content: space-between; align-items: center; border-bottom: 1px solid #333; }
-.nav-brand { font-weight: 800; letter-spacing: 2px; font-size: 1.2rem; }
+/* --- 3. UI ELEMENT (Agar konten terlihat) --- */
+.navbar { 
+    padding: 20px; display: flex; justify-content: space-between; 
+    align-items: center; border-bottom: 1px solid #222;
+}
+.nav-brand { 
+    font-weight: 700; color: #c5a059; letter-spacing: 3px; font-size: 1.3rem; 
+}
+
+/* --- 4. BANNER (Agar tidak hitam polos) --- */
+.banner-promo { 
+    margin: 20px; padding: 40px 20px; 
+    background: linear-gradient(135deg, #2a2a2a 0%, #111 100%); 
+    border-left: 4px solid #c5a059;
+    border-radius: 10px; text-align: center;
+}
+.banner-promo h1 { color: #fff; margin-bottom: 10px; }
+
 .spa-page { display: none; }
 .spa-page.active { display: block; }
-.bottom-nav { position: fixed; bottom: 0; width: 100%; display: flex; justify-content: space-around; background: rgba(0,0,0,0.9); padding: 15px; border-top: 1px solid #333; }
