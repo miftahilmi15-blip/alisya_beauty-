@@ -1,25 +1,21 @@
 import { initRouter, navigateTo } from "../router/router.js";
 
-// Fungsi untuk memastikan aplikasi tampil
 const initApp = () => {
+    console.log("Aplikasi sedang dimuat...");
+
+    // JARING PENGAMAN: Apapun yang terjadi pada router, 
+    // kita tetap tampilkan body setelah 500ms agar user tidak melihat layar hitam selamanya.
+    setTimeout(() => {
+        document.body.style.visibility = 'visible';
+        document.body.style.opacity = '1';
+    }, 500);
+
     try {
-        console.log("Aplikasi sedang dimuat...");
-        
-        // 1. Inisialisasi Navigasi
         initRouter();
-        
-        // 2. Set halaman default
         navigateTo('home-page');
-        
-        // 3. Tampilkan body setelah semuanya siap
-        document.body.style.visibility = 'visible';
-        console.log("Aplikasi berhasil dimuat!");
     } catch (error) {
-        console.error("Terjadi error saat load aplikasi:", error);
-        // Tetap tampilkan body agar tidak blank meski ada error
-        document.body.style.visibility = 'visible';
+        console.error("Router error:", error);
     }
 };
 
-// Jalankan saat DOM siap
 document.addEventListener('DOMContentLoaded', initApp);
