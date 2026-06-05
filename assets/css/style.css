@@ -1,13 +1,14 @@
-/* --- 1. RESET & FONT --- */
+/* --- RESET & FONT --- */
 * { margin: 0; padding: 0; box-sizing: border-box; }
 body { 
     font-family: 'Inter', sans-serif; 
-    background-color: #0a0a0a; /* Background gelap agar kesan premium */
+    background-color: #0a0a0a; 
     color: #f4f4f4; 
     line-height: 1.6;
+    opacity: 1; /* Pastikan selalu muncul */
 }
 
-/* --- 2. LOGIN OVERLAY (Glassmorphism) --- */
+/* --- LOGIN OVERLAY --- */
 .overlay { 
     position: fixed; top: 0; left: 0; width: 100%; height: 100%; 
     background: radial-gradient(circle at center, #1a1a1a 0%, #000 100%);
@@ -37,43 +38,9 @@ body {
 }
 .btn-google:hover { transform: scale(1.02); }
 
-/* --- 3. NAVBAR MODERN --- */
-.navbar { 
-    padding: 20px; display: flex; justify-content: space-between; 
-    align-items: center; background: rgba(255, 255, 255, 0.02);
-    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
-}
+/* --- NAVBAR & UI --- */
+.navbar { padding: 20px; display: flex; justify-content: space-between; align-items: center; border-bottom: 1px solid #333; }
 .nav-brand { font-weight: 800; letter-spacing: 2px; font-size: 1.2rem; }
-
-/* --- 4. BANNER PROMO (Gradient Gold) --- */
-.banner-promo { 
-    margin: 20px; padding: 30px; 
-    background: linear-gradient(135deg, #c5a059, #8b6b2d); 
-    border-radius: 25px; color: white; text-align: center;
-}
-.btn-main { 
-    margin-top: 15px; background: white; color: #c5a059; border: none; 
-    padding: 10px 25px; border-radius: 50px; font-weight: bold; cursor: pointer;
-}
-
-/* --- 5. GRID KATEGORI --- */
-.category-section { padding: 0 20px; margin-top: 20px; }
-.category-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 15px; }
-.cat-item { 
-    background: rgba(255, 255, 255, 0.05); padding: 20px 10px; 
-    border-radius: 20px; text-align: center;
-}
-.cat-item i { font-size: 1.5rem; color: #c5a059; margin-bottom: 8px; display: block; }
-
-/* --- 6. BOTTOM NAVIGATION --- */
-.bottom-nav { 
-    position: fixed; bottom: 0; width: 100%; display: flex; 
-    justify-content: space-around; background: rgba(0, 0, 0, 0.8);
-    backdrop-filter: blur(20px); padding: 20px;
-}
-.nav-link { color: #888; font-size: 1.3rem; }
-.nav-link.active { color: #c5a059; }
-
-/* --- 7. SPA CONTROL --- */
 .spa-page { display: none; }
 .spa-page.active { display: block; }
+.bottom-nav { position: fixed; bottom: 0; width: 100%; display: flex; justify-content: space-around; background: rgba(0,0,0,0.9); padding: 15px; border-top: 1px solid #333; }
